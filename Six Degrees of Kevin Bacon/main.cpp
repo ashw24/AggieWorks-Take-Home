@@ -314,10 +314,10 @@ vector<Node*> pathFinder(Node* start, Node* end, vector<Node*> vclosed){
 
 int main(int argc, char** argv)
 {
-    cout << "running";
+    //cout << "running";
     // Initialize Crow app
     ifstream text;
-    text.open("/Users/ashwin/Downloads/Six Degrees of Kevin Bacon/Six Degrees of Kevin Bacon/cleaned_movielist.txt");
+    text.open("cleaned_movielist.txt");
     if (!text.is_open()) {
         cout << "Failed to open cleaned_movielist.txt" << endl;
     }
@@ -328,10 +328,10 @@ int main(int argc, char** argv)
     char* com;
     Node* actor;
     Node* movie;
-    cout << "starting parse";
+    //cout << "starting parse";
     //reading file and placing it into the respective LL
     while(getline(text,command)){
-    cout << "readin" << endl;
+    //cout << "readin" << endl;
         if (isspace(command.back())){
             command.pop_back();
         }
@@ -339,7 +339,7 @@ int main(int argc, char** argv)
         string mov = "";
         int counter = 0;
         com = strdup(command.c_str());
-        cout << com << endl;
+        //cout << com << endl;
         for(unsigned int i = 0; i<command.length(); i++){
             temp += com[i];
             counter++;
@@ -494,7 +494,7 @@ int main(int argc, char** argv)
             Node* actor2 = actors[actor2_name];
             result = BFS(actor1, actor2);
         }
-        cout << result;
+        //cout << result;
         crow::json::wvalue x;
         x["result"] = result;
         

@@ -23,7 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CF2FE0E32AC7E064007A30AF /* cleaned_movielist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cleaned_movielist.txt; sourceTree = "<group>"; };
+		CF2FE0E52AC92A60007A30AF /* cleaned_movielist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cleaned_movielist.txt; sourceTree = "<group>"; };
+		CF2FE0E62AC92AC5007A30AF /* cleaned_movielist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cleaned_movielist.txt; sourceTree = "<group>"; };
 		CF6248C52AC7D9C40021E601 /* Six Degrees of Kevin Bacon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Six Degrees of Kevin Bacon"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6248C82AC7D9C40021E601 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -42,6 +43,7 @@
 		CF6248BC2AC7D9C40021E601 = {
 			isa = PBXGroup;
 			children = (
+				CF2FE0E52AC92A60007A30AF /* cleaned_movielist.txt */,
 				CF6248C72AC7D9C40021E601 /* Six Degrees of Kevin Bacon */,
 				CF6248C62AC7D9C40021E601 /* Products */,
 			);
@@ -58,8 +60,8 @@
 		CF6248C72AC7D9C40021E601 /* Six Degrees of Kevin Bacon */ = {
 			isa = PBXGroup;
 			children = (
+				CF2FE0E62AC92AC5007A30AF /* cleaned_movielist.txt */,
 				CF6248C82AC7D9C40021E601 /* main.cpp */,
-				CF2FE0E32AC7E064007A30AF /* cleaned_movielist.txt */,
 			);
 			path = "Six Degrees of Kevin Bacon";
 			sourceTree = "<group>";
