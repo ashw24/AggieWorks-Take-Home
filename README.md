@@ -61,5 +61,5 @@ The main program logic is located in `Six Degrees of Kevin Bacon/main.cpp`. The 
 
 ## Conclusion
 
-This project meets the requirements and criteria outlined in the Software Engineer Take-Home assignment. The README provides clear instructions on how to set up and run the program, ensuring a smooth experience for users and reviewers. You can find a demo [here]([https://youtu.be/RuX07oH7494](https://youtu.be/7hsL7PqMFSY)https://youtu.be/7hsL7PqMFSY).
+This project meets the requirements and criteria outlined in the Software Engineer Take-Home assignment. The README provides clear instructions on how to set up and run the program, ensuring a smooth experience for users and reviewers. You can find a demo [here](https://youtu.be/7hsL7PqMFSY).
 
