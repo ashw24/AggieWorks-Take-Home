@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for content */
+  background-color: rgba(255, 255, 255, 0.9); 
   border-radius: 10px;
 }
 
@@ -93,7 +93,9 @@ button:hover {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  margin-left: 10px; /* To provide some spacing between the SVG graph and the button */
+  margin-left: 1em; 
+  margin-right: 10em;
+  margin-top: 20em;
   height: 3em;
   width: 8em;
   text-align: center;
@@ -157,4 +159,26 @@ button:hover {
   border: 1px solid #ddd; /* Optional: Just to visualize the container */
   margin: 20px auto; /* Centering */
   position: relative; /* Relative positioning for absolute child elements */
+}
+
+.loading-bar-container {
+  width: 100%;
+  height: 30px;
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.loading-bar {
+  height: 100%;
+  width: 0;
+  background-color: #CBA896;
+  border-radius: 15px 0 0 15px;
+  animation: loadingAnimation 18s linear forwards; /* 18 seconds for the animation */
+}
+
+@keyframes loadingAnimation {
+  to {
+    width: 100%;
+  }
 }

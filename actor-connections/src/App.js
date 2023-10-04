@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom';
 import './App.css';
 import * as d3 from 'd3';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faRandom, faSearch, faFilm, faRedo } from '@fortawesome/free-solid-svg-icons';
+
 
 function Main() {
   const [showLoading, setShowLoading] = useState(false);
@@ -166,9 +169,11 @@ function Main() {
           placeholder="Second actor"
           required
         />
-        <button type="submit">Submit</button>
+        <button type="submit">
+          <FontAwesomeIcon icon={faSearch} /> Submit
+        </button>
         <button className="random-button" onClick={setRandomActors}>
-          Set Random Actors
+          <FontAwesomeIcon icon={faRandom} /> Set Random Actors
         </button>
       </form>
 
@@ -177,7 +182,7 @@ function Main() {
   );
 }
 
-function Loading() {
+function Loading({ onComplete }) {
   const loadingText = [
     'Loading...',
     'Please wait...',
@@ -186,35 +191,49 @@ function Loading() {
   ];
 
   const [loadingMessage, setLoadingMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * loadingText.length);
     setLoadingMessage(loadingText[randomIndex]);
 
-    const loadingTime = Math.floor(Math.random() * (20000 - 15000)) + 15000;
+    // Adjust the loading time to be between 30,000ms (30s) and 60,000ms (60s)
+    const loadingTime = Math.floor(Math.random() * (60000 - 30000)) + 30000;
     const timer = setTimeout(() => {
-      setIsLoading(false);
+      if (onComplete) {
+        onComplete();
+      }
     }, loadingTime);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [onComplete]);
 
   return (
     <div className="loading-container">
-      {isLoading}
       <p className="loading-message">{loadingMessage}</p>
+      <div className="loading-bar-container">
+        <div className="loading-bar"></div>
+      </div>
     </div>
   );
 }
 
+
+
 function LoadingPage() {
+  const history = useHistory();
+
+  const handleLoadingComplete = () => {
+    history.push("/results");
+  };
+
   return (
     <div className="App">
-      <Loading />
+      <Loading onComplete={handleLoadingComplete} />
     </div>
   );
 }
+
+
 
 function Results({ location }) {
   const [result, setResult] = useState(location.state.result);
@@ -377,11 +396,13 @@ function Results({ location }) {
     <div className="App">
       {noConnections ? (
         <p>No connections found.
-          <button onClick={handleRestart} className="refresh-button2">Restart</button>
+          <button onClick={handleRestart} className="refresh-button2">
+        <FontAwesomeIcon icon={faRedo} /> Restart
+      </button>
         </p>
       ) : (
         <div className="graph-scroll-container">
-          <div className="graph-container" style={getBoxSize()}> {/* Use style here */}
+          <div className="graph-container" style={getBoxSize()}> 
             <svg className="result-svg" width={width} height={height}>
               <defs>
                 <marker id="arrow" markerWidth="10" markerHeight="10" refX="20" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -389,7 +410,9 @@ function Results({ location }) {
                 </marker>
               </defs>
             </svg>
-            <button onClick={handleRestart} className="refresh-button">Restart</button>
+            <button onClick={handleRestart} className="refresh-button">
+        <FontAwesomeIcon icon={faRedo} /> Restart
+      </button>
           </div>
           
         </div>
