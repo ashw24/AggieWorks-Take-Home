@@ -1,3 +1,4 @@
+/* Main App styling */
 .App {
   text-align: center;
   padding: 20px;
@@ -5,18 +6,20 @@
   border-radius: 10px;
 }
 
+/* Logo styling within the App */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-
+/* Animation for the App logo */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+/* Header styling within the App */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,15 +31,18 @@
   color: white;
 }
 
+/* Link styling within the App */
 .App-link {
   color: #61dafb;
 }
+
+/* Container for paragraphs */
 .paragraph-container {
-  width: 30%; /* Adjust the width as needed */
-  margin: 0 auto; /* Center the container horizontally */
+  width: 30%;
+  margin: 0 auto;
 }
 
-
+/* Animation for the spinning App logo */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -46,13 +52,13 @@
   }
 }
 
-/* Add a border around the nodes */
+/* Styling for nodes in a graph */
 circle {
   stroke: #333;
   stroke-width: 2px;
 }
 
-/* Style the form fields and buttons */
+/* Form styling */
 form {
   display: flex;
   flex-direction: column;
@@ -60,6 +66,7 @@ form {
   margin-top: 20px;
 }
 
+/* Input field styling */
 input {
   width: 20%;
   padding: 10px;
@@ -68,59 +75,59 @@ input {
   border-radius: 5px;
 }
 
+/* General button styling */
 button {
   width: 21.5%;
   padding: 10px;
   margin: 5px 0;
-  background-color: #282c34; /* Dark background for buttons */
+  background-color: #282c34;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
+/* Specific styling for a 'random' button */
 button.random-button {
-  background-color: #007bff; /* Blue background for random button */
+  background-color: #007bff;
 }
 
+/* Hover effect for buttons */
 button:hover {
-  background-color: #61dafb; /* Hover color for buttons */
+  background-color: #61dafb;
 }
+
+/* Styling for a specific refresh button */
 .refresh-button {
+  bottom: center;
   background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-left: 1em; 
   margin-right: 10em;
-  margin-top: 20em;
   height: 3em;
-  width: 8em;
+  width: 9em;
   text-align: center;
-  top: 70em;
+  margin-top: 25em;
 }
 
+/* Hover effect for the refresh button */
 .refresh-button:hover {
   background-color: #45a049;
 }
 
-
-
-/* Style the graph container */
-.graph-container {
-  display: flex;
-}
-
+/* Styling for another specific refresh button */
 .refresh-button2 {
   position: absolute;
-  bottom: center; /* Adjust the distance from the bottom as needed */
-  right: 40px; /* Adjust the distance from the right as needed */
+  bottom: center; 
+  right: 40px; 
   width: 100px;
   height: center;
   border-radius: 15px;
-  background-color: #007bff;
+  background-color: #4CAF50;
   color: white;
   border: none;
   cursor: pointer;
@@ -128,19 +135,20 @@ button:hover {
   transition: background-color 0.3s ease;
 }
 
-/* Style the button on hover */
+/* Hover effect for the second refresh button */
 .refresh-button2:hover {
-  background-color: #0056b3;
+  background-color: #45a049;
 }
 
-/* Style the graph container */
+/* Styling for the graph container */
 .graph-container {
   display: flex;
   justify-content: flex-start;
-  position: relative; /* To position the button absolutely relative to this container */
-  margin-bottom: 20px; /* Provide some spacing after the graph */
+  position: relative;
+  margin-bottom: 20px;
 }
-/* Style the box when there are no connections */
+
+/* Styling for a box that appears when there are no connections in the graph */
 .no-connections-box {
   width: 700px;
   height: 400px;
@@ -152,15 +160,18 @@ button:hover {
   background-color: #fff;
   margin: 0 auto;
 }
+
+/* Styling for a scrollable graph container */
 .graph-scroll-container {
-  width: 90vw; /* Adjust viewport width as required */
-  height: 90vh; /* Adjust viewport height as required */
-  overflow: scroll; /* Enables scrolling */
-  border: 1px solid #ddd; /* Optional: Just to visualize the container */
-  margin: 20px auto; /* Centering */
-  position: relative; /* Relative positioning for absolute child elements */
+  width: 90vw;
+  height: 90vh;
+  overflow: scroll;
+  border: 1px solid #ddd;
+  margin: 20px auto;
+  position: relative;
 }
 
+/* Styling for a loading bar container */
 .loading-bar-container {
   width: 100%;
   height: 30px;
@@ -169,14 +180,16 @@ button:hover {
   overflow: hidden;
 }
 
+/* Styling for the loading bar itself */
 .loading-bar {
   height: 100%;
   width: 0;
   background-color: #CBA896;
   border-radius: 15px 0 0 15px;
-  animation: loadingAnimation 18s linear forwards; /* 18 seconds for the animation */
+  animation: loadingAnimation 18s linear forwards;
 }
 
+/* Animation for the loading bar */
 @keyframes loadingAnimation {
   to {
     width: 100%;

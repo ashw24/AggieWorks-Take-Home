@@ -1,3 +1,4 @@
+// Importing necessary libraries and components
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom';
 import './App.css';
@@ -5,133 +6,145 @@ import * as d3 from 'd3';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faRandom, faSearch, faFilm, faRedo } from '@fortawesome/free-solid-svg-icons';
 
-
+// Main component for the application
 function Main() {
+  // State for showing the loading spinner
   const [showLoading, setShowLoading] = useState(false);
 
-  const actorList = [
-    "Chad_Oliphant", "Chelsea_Goodwin",
-    "Peter_Greene", "Alice_Ensor",
-    "William_Quinn", "Erica_Manni",
-    "Joseph_Aviel", "Michael_Blum",
-    "Dylan_Jordan", "Gift_Harris",
-    "Tanja_Spiess", "B.R._Jayaram",
-    "Albertine_Green", "Emily_Towles",
-    "Justin_Devine", "Mike_Nall",
-    "Frank_G.W._Thomas", "Seve_Williams",
-    "Evan_Stern", "Giovanni_Savoia",
-    "Justin_Rose", "Randy_Mars",
-    "Carolyn_Blashek", "Brisa_Delaselva",
-    "Louis_Fasanaro", "John_Sarkisian",
-    "Eugene_Moore", "William_S._Benson",
-    "Michael_Cotten", "John_Wuchte",
-    "Charles_Bartlett", "Carrie_Stevens",
-    "BeBe_Bellamont", "Jenna_Enns",
-    "Kenneth_Chang", "Adam_C._Johnson",
-    "Haskell_V._Anderson_III", "Melissa_Mars",
-    "Helen_Holmes", "Diana_Mickelson",
-    "Nicole_Signore", "Larry_Wellington_Cauldwell_III",
-    "Silent_Addy", "Anton_Weidner",
-    "Laura_Vandervoort", "Tedd_Saint-James",
-    "Sylvester_Little_Jr.", "Christine_Bennett",
-    "Colleen_Irene_Boag", "Jack_Mercer",
-    "Allex_Jording", "Cary_Y._Mizobe",
-    "Premstar_Santana", "Deanne_Destler",
-    "Michiko_Hoshi", "Frank_Riley",
-    "Carlyle_Blackwell", "Sammy_Anderson",
-    "Mar_Omega", "Michael_Mulvey",
-    "Douglas_Graves", "Lloyd_Hamilton",
-    "Jared_Fansler", "Pablo_Patlis",
-    "Ron_Pacheco", "Bill_Lobley",
-    "Paris_Brown", "Karen_Kahler",
-    "Jeffrey_B._Campbell", "Steve_Aaron",
-    "Ted_Chun", "Patrick_Foy",
-    "Emily_Baldoni", "Marielle_Scott",
-    "Natalie_Smyka", "Janine_Cogelia",
-    "Leslie_Frye", "Scott_Mielock",
-    "Jee_Mee_Kim", "Clara_Perryman",
-    "Camille_Cristobal", "Julie_Mann",
-    "Mike_Sutton", "Yisrael_Meir_Jacobson",
-    "Amanda_Madison", "Paul_Lieber",
-    "Andrew_Sensenig", "Kacie_Houston",
-    "Ntxawm_Hawj", "Florence_Vidor",
-    "Cassie_Stewart", "Ryder_Londo",
-    "Brian_Veronica", "Tierney_Acott",
-    "Brandon_Parham", "Eric_Bachmann",
-    "Cameron_Ring", "Allen_Schwarts",
-    "Amy_Jo_Jackson", "Tracy_Jack",
-    "Renee_Iovine", "Derek_Bauman",
-    "Cody_Lyle_Asher", "Kenny_Bordes",
-    "Radha_Mitchell", "Briana_Bradley",
-    "Maria_Cavassuto", "Lucas_Cardona",
-    "Matt_Willis", "Bill_Lee_Brown",
-    "Linda_Smith", "Tanner_Smith",
-    "Hakym_Reagan", "Merlin_Senthil",
-    "Thai_Edwards", "Michael_C._Maronna",
-    "Ari_Joffe", "Conner_Marx",
-    "Yosef_Podolski", "Frank_Hallack",
-    "Catesby_Bernstein", "Emily_McVey",
-    "Chanon_Finley", "Brad_Whitford",
-    "Kyle_Kaiser", "D'Ercey_Smith",
-    "Lezlie_Williams", "Sally_Leung_Bayer",
-    "Dakota_Carter", "Cindy_Gilbert",
-    "Ethan_Ednee", "Keith_Bisset",
-    "Paula_Taylor", "Kathlyn_Williams",
-    "Malcolm_Sebastian", "Taylor_Hill",
-    "Erin_Carufel", "Daniel_Munarth",
-    "Cooper_Barnes", "Tom_Powers",
-    "Anthony_Reynolds", "Robert_John_Burke",
-    "Emily_Mura-Smith", "Lafe_McKee",
-    "Jennifer_Hare", "Chelsea_Spirito",
-    "Matthew_Webb", "Joel_Clark_Ackerman",
-    "Brian_Chamberlain", "Owen_Hirst",
-    "Ingemar_Johansson", "Javi_Mulero",
-    "James_Hurley", "Stephen_L._Burns",
-    "Beyoncé", "Caroline_Goodall",
-    "Joy_Kim", "Benjamin_Charles",
-    "Laura_Fantuzzi", "Krystal_Willis",
-    "Rachel_Casparian", "Apryl_Wilson",
-    "Richard_Taylor", "Frank_Newburg",
-    "Mila_Kunis", "Michael_Kaczurak",
-    "Evan_King", "John_Bellemer",
-    "Kristina_Jovanovic", "Jen_Gentile",
-    "Gary_Kozak", "Margaret_Morris",
-    "Santino_Craven", "Tadd_Morgan",
-    "Christina_Leone", "Kara_Nova",
-    "Jackson_Parker", "Scott_Ganyo",
-    "Jeff_Hoferer", "Spencer_Kane",
-    "Irene_Ong", "Juan_Barbieri",
-    "S._David_Nieves", "Catherine_Campion",
-    "Rebecca_Kenny", "Ernest_Thomas",
-    "Jeffery_Battersby", "Trevor_Earley",
-    "Wesley_Reymond", "Porfirio_Díaz",
-    "Lauren_Lox", "Jeffrey_M._Hartman",
-    "Nick_White", "Jared_Haus",
-    "Michael_Vachetti", "Kelsey_Crane",
-    "Julie_Gonzalo", "Jack_Connolly",
-    "Hope_Sender", "James_Wong",
-    "Alicia_An_Clark", "Aaron_Diskin",
-    "Chauncey_Depew", "Blanche_Bayliss",
-    "Chauncey_Depew", "Chauncey_Depew",
-    "Hannah_D._Scott", "Hannah_D._Scott"
-  ];
+  // Sample list of actors
+  const actorList = [  "Chad_Oliphant", "Chelsea_Goodwin",
+  "Peter_Greene", "Alice_Ensor",
+  "William_Quinn", "Erica_Manni",
+  "Joseph_Aviel", "Michael_Blum",
+  "Dylan_Jordan", "Gift_Harris",
+  "Tanja_Spiess", "B.R._Jayaram",
+  "Albertine_Green", "Emily_Towles",
+  "Justin_Devine", "Mike_Nall",
+  "Frank_G.W._Thomas", "Seve_Williams",
+  "Evan_Stern", "Giovanni_Savoia",
+  "Justin_Rose", "Randy_Mars",
+  "Carolyn_Blashek", "Brisa_Delaselva",
+  "Louis_Fasanaro", "John_Sarkisian",
+  "Eugene_Moore", "William_S._Benson",
+  "Michael_Cotten", "John_Wuchte",
+  "Charles_Bartlett", "Carrie_Stevens",
+  "BeBe_Bellamont", "Jenna_Enns",
+  "Kenneth_Chang", "Adam_C._Johnson",
+  "Haskell_V._Anderson_III", "Melissa_Mars",
+  "Helen_Holmes", "Diana_Mickelson",
+  "Nicole_Signore", "Larry_Wellington_Cauldwell_III",
+  "Silent_Addy", "Anton_Weidner",
+  "Laura_Vandervoort", "Tedd_Saint-James",
+  "Sylvester_Little_Jr.", "Christine_Bennett",
+  "Colleen_Irene_Boag", "Jack_Mercer",
+  "Allex_Jording", "Cary_Y._Mizobe",
+  "Premstar_Santana", "Deanne_Destler",
+  "Michiko_Hoshi", "Frank_Riley",
+  "Carlyle_Blackwell", "Sammy_Anderson",
+  "Mar_Omega", "Michael_Mulvey",
+  "Douglas_Graves", "Lloyd_Hamilton",
+  "Jared_Fansler", "Pablo_Patlis",
+  "Ron_Pacheco", "Bill_Lobley",
+  "Paris_Brown", "Karen_Kahler",
+  "Jeffrey_B._Campbell", "Steve_Aaron",
+  "Ted_Chun", "Patrick_Foy",
+  "Emily_Baldoni", "Marielle_Scott",
+  "Natalie_Smyka", "Janine_Cogelia",
+  "Leslie_Frye", "Scott_Mielock",
+  "Jee_Mee_Kim", "Clara_Perryman",
+  "Camille_Cristobal", "Julie_Mann",
+  "Mike_Sutton", "Yisrael_Meir_Jacobson",
+  "Amanda_Madison", "Paul_Lieber",
+  "Andrew_Sensenig", "Kacie_Houston",
+  "Ntxawm_Hawj", "Florence_Vidor",
+  "Cassie_Stewart", "Ryder_Londo",
+  "Brian_Veronica", "Tierney_Acott",
+  "Brandon_Parham", "Eric_Bachmann",
+  "Cameron_Ring", "Allen_Schwarts",
+  "Amy_Jo_Jackson", "Tracy_Jack",
+  "Renee_Iovine", "Derek_Bauman",
+  "Cody_Lyle_Asher", "Kenny_Bordes",
+  "Radha_Mitchell", "Briana_Bradley",
+  "Maria_Cavassuto", "Lucas_Cardona",
+  "Matt_Willis", "Bill_Lee_Brown",
+  "Linda_Smith", "Tanner_Smith",
+  "Hakym_Reagan", "Merlin_Senthil",
+  "Thai_Edwards", "Michael_C._Maronna",
+  "Ari_Joffe", "Conner_Marx",
+  "Yosef_Podolski", "Frank_Hallack",
+  "Catesby_Bernstein", "Emily_McVey",
+  "Chanon_Finley", "Brad_Whitford",
+  "Kyle_Kaiser", "D'Ercey_Smith",
+  "Lezlie_Williams", "Sally_Leung_Bayer",
+  "Dakota_Carter", "Cindy_Gilbert",
+  "Ethan_Ednee", "Keith_Bisset",
+  "Paula_Taylor", "Kathlyn_Williams",
+  "Malcolm_Sebastian", "Taylor_Hill",
+  "Erin_Carufel", "Daniel_Munarth",
+  "Cooper_Barnes", "Tom_Powers",
+  "Anthony_Reynolds", "Robert_John_Burke",
+  "Emily_Mura-Smith", "Lafe_McKee",
+  "Jennifer_Hare", "Chelsea_Spirito",
+  "Matthew_Webb", "Joel_Clark_Ackerman",
+  "Brian_Chamberlain", "Owen_Hirst",
+  "Ingemar_Johansson", "Javi_Mulero",
+  "James_Hurley", "Stephen_L._Burns",
+  "Beyoncé", "Caroline_Goodall",
+  "Joy_Kim", "Benjamin_Charles",
+  "Laura_Fantuzzi", "Krystal_Willis",
+  "Rachel_Casparian", "Apryl_Wilson",
+  "Richard_Taylor", "Frank_Newburg",
+  "Mila_Kunis", "Michael_Kaczurak",
+  "Evan_King", "John_Bellemer",
+  "Kristina_Jovanovic", "Jen_Gentile",
+  "Gary_Kozak", "Margaret_Morris",
+  "Santino_Craven", "Tadd_Morgan",
+  "Christina_Leone", "Kara_Nova",
+  "Jackson_Parker", "Scott_Ganyo",
+  "Jeff_Hoferer", "Spencer_Kane",
+  "Irene_Ong", "Juan_Barbieri",
+  "S._David_Nieves", "Catherine_Campion",
+  "Rebecca_Kenny", "Ernest_Thomas",
+  "Jeffery_Battersby", "Trevor_Earley",
+  "Wesley_Reymond", "Porfirio_Díaz",
+  "Lauren_Lox", "Jeffrey_M._Hartman",
+  "Nick_White", "Jared_Haus",
+  "Michael_Vachetti", "Kelsey_Crane",
+  "Julie_Gonzalo", "Jack_Connolly",
+  "Hope_Sender", "James_Wong",
+  "Alicia_An_Clark", "Aaron_Diskin",
+  "Chauncey_Depew", "Blanche_Bayliss",
+  "Chauncey_Depew", "Chauncey_Depew",
+  "Hannah_D._Scott", "Hannah_D._Scott" ];
+
+  // Function to get a random actor from the list
   const getRandomActor = () => {
     const randomIndex = Math.floor(Math.random() * actorList.length);
     return actorList[randomIndex];
   };
+
+  // Function to set two random actors
   const setRandomActors = () => {
     setActor1(getRandomActor());
     setActor2(getRandomActor());
   };
+
+  // States for the two actors
   const [actor1, setActor1] = useState('');
   const [actor2, setActor2] = useState('');
+
+  // For navigation
   const history = useHistory();
+
+  // Helper function to format actor names for the request
   const formatForRequest = (name) => {
     return name.replace(/\s+/g, '_');
   };
+
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowLoading(true); // Show loading page while fetching data
+    setShowLoading(true); // Show loading spinner
 
     try {
       const formattedActor1 = formatForRequest(actor1);
@@ -141,34 +154,22 @@ function Main() {
       history.push("/results", { result: data.result });
     } catch (error) {
       console.error("Error fetching data:", error);
-      setShowLoading(false); // Hide loading page on error
+      setShowLoading(false); // Hide loading spinner on error
     }
   };
 
+  // Render the main component
   return (
     <div className="App">
       <h1>Six Degrees of Kevin Bacon</h1>
       <div className="paragraph-container">
         <p>
-          This website allows users to explore connections between actors in
-          movies. Simply enter the names of two actors, or use the "Set Random
-          Actors" button for a random pair, and discover the cinematic links
-          that connect them through a visually engaging graph.
+          This website allows users to explore connections between actors in movies. Simply enter the names of two actors, or use the "Set Random Actors" button for a random pair, and discover the cinematic links that connect them through a visually engaging graph.
         </p>
       </div>
       <form onSubmit={handleSubmit}>
-        <input
-          value={actor1}
-          onChange={(e) => setActor1(e.target.value)}
-          placeholder="First actor"
-          required
-        />
-        <input
-          value={actor2}
-          onChange={(e) => setActor2(e.target.value)}
-          placeholder="Second actor"
-          required
-        />
+        <input value={actor1} onChange={(e) => setActor1(e.target.value)} placeholder="First actor" required />
+        <input value={actor2} onChange={(e) => setActor2(e.target.value)} placeholder="Second actor" required />
         <button type="submit">
           <FontAwesomeIcon icon={faSearch} /> Submit
         </button>
@@ -182,28 +183,23 @@ function Main() {
   );
 }
 
+// Loading component to show while fetching data
 function Loading({ onComplete }) {
-  const loadingText = [
-    'Loading...',
-    'Please wait...',
-    'Fetching data...',
-    'Analyzing connections...',
-  ];
-
+  const loadingText = [  'Loading...',
+  'Please wait...',
+  'Fetching data...',
+  'Analyzing connections...', ];
   const [loadingMessage, setLoadingMessage] = useState('');
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * loadingText.length);
     setLoadingMessage(loadingText[randomIndex]);
-
-    // Adjust the loading time to be between 30,000ms (30s) and 60,000ms (60s)
     const loadingTime = Math.floor(Math.random() * (60000 - 30000)) + 30000;
     const timer = setTimeout(() => {
       if (onComplete) {
         onComplete();
       }
     }, loadingTime);
-
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -217,15 +213,12 @@ function Loading({ onComplete }) {
   );
 }
 
-
-
+// Component to show the loading page
 function LoadingPage() {
   const history = useHistory();
-
   const handleLoadingComplete = () => {
     history.push("/results");
   };
-
   return (
     <div className="App">
       <Loading onComplete={handleLoadingComplete} />
@@ -233,28 +226,13 @@ function LoadingPage() {
   );
 }
 
-
-
+// Component to show the results
 function Results({ location }) {
   const [result, setResult] = useState(location.state.result);
   const [width, setWidth] = useState(window.innerWidth * 0.9);
   const [height, setHeight] = useState(window.innerHeight * 0.9);
-  const [noConnections, setNoConnections] = useState(false); // State to track if there are no connections
-
+  const [noConnections, setNoConnections] = useState(false);
   const history = useHistory();
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth * 0.9);
-      setHeight(window.innerHeight * 0.9);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     if (result) {
@@ -389,16 +367,18 @@ function Results({ location }) {
       return { width, height }; // Use the calculated size when there are connections
     }
   };
+
   const handleRestart = () => {
     history.push("/");
   };
+
   return (
     <div className="App">
       {noConnections ? (
         <p>No connections found.
           <button onClick={handleRestart} className="refresh-button2">
-        <FontAwesomeIcon icon={faRedo} /> Restart
-      </button>
+            <FontAwesomeIcon icon={faRedo} /> Restart
+          </button>
         </p>
       ) : (
         <div className="graph-scroll-container">
@@ -411,19 +391,16 @@ function Results({ location }) {
               </defs>
             </svg>
             <button onClick={handleRestart} className="refresh-button">
-        <FontAwesomeIcon icon={faRedo} /> Restart
-      </button>
+              <FontAwesomeIcon icon={faRedo} /> Restart
+            </button>
           </div>
-          
         </div>
       )}
     </div>
-);
-
-
+  );
 }
 
-
+// Main App component that sets up routing
 function App() {
   return (
     <Router>
